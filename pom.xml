@@ -7,8 +7,9 @@
 	<artifactId>playgrounp</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
     <modules>
-        <module>clawer</module>
-        <module>clawer2</module>
+        <module>earlysleep</module>
+        <module>caffeine</module>
+        <module>jpatest</module>
     </modules>
     <packaging>pom</packaging>
 
