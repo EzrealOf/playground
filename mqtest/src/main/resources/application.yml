@@ -1,0 +1,6 @@
+server:
+  port: 8181
+  servlet:
+    context-path: /js
+  tomcat:
+    uri-encoding: UTF-8
