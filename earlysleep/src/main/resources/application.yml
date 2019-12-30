@@ -1,0 +1,22 @@
+spring:
+  cloud:
+    stream:
+      bindings:
+        input:
+          destination: queue.log.messages
+          binder: local_rabbit
+          group: logMessageConsumers
+        output:
+          destination: queue.pretty.log.messages
+          binder: local_rabbit
+      binders:
+        local_rabbit:
+          type: rabbit
+          environment:
+            spring:
+              rabbitmq:
+                host: mq.azsys.net
+                port: 5672
+                username: admin
+                password: Wantdo.123
+                virtual-host: /

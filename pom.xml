@@ -10,7 +10,6 @@
         <module>earlysleep</module>
         <module>caffeine</module>
         <module>jpatest</module>
-        <module>mqtest</module>
     </modules>
     <packaging>pom</packaging>
 
