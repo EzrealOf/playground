@@ -26,8 +26,8 @@ import java.util.Arrays;
  */
 public class Simple581 {
     public static void main(String[] args) {
-//        int[] nums = {2, 6, 4, 8, 10, 9, 15};
-        int[] nums = {1,2,3,4};
+        int[] nums = {2, 6, 4, 8, 10, 9, 15};
+//        int[] nums = {1, 2, 3, 4};
         System.out.println(findUnsortedSubarray(nums));
     }
 
@@ -36,16 +36,14 @@ public class Simple581 {
         Arrays.sort(nums);
         int min = 0;
         int max = nums.length - 1;
-        for (int i = 0; i < nums.length; i++) {
-            if (nums[i] != clone[i]) {
-                min = i;
-                break;
+        while (min < max) {
+            if (nums[min] == clone[min]) {
+                min++;
             }
-        }
-
-        for (int i = nums.length - 1; i >= 0; i--) {
-            if (nums[i] != clone[i]) {
-                max = i;
+            if (nums[max] == clone[max]) {
+                max--;
+            }
+            if (nums[min] != clone[min] && nums[max] != clone[max]){
                 break;
             }
         }
