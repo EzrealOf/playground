@@ -2,12 +2,10 @@ package com.ezreal.base;
 
 import com.google.common.collect.Lists;
 import com.google.common.collect.Queues;
+import com.google.common.collect.Sets;
 
 import java.math.BigDecimal;
-import java.util.Arrays;
-import java.util.List;
-import java.util.Objects;
-import java.util.Queue;
+import java.util.*;
 
 /**
  * @author ezreal
@@ -24,7 +22,11 @@ public class Base {
 //
 //        listsTest();
 
-        queueTest();
+//        queueTest();
+        setContainTest();
+
+
+
 
     }
 
@@ -86,7 +88,7 @@ public class Base {
         a[0] = "3";
         System.out.println(list);
 
-        int[] myArray = { 1, 2, 3 };
+        int[] myArray = {1, 2, 3};
         List myList = Arrays.asList(myArray);
         //1
         System.out.println(myList.size());
@@ -95,10 +97,10 @@ public class Base {
         try {
             //报错：ArrayIndexOutOfBoundsException
             System.out.println(myList.get(1));
-        }catch (ArrayIndexOutOfBoundsException e){
+        } catch (ArrayIndexOutOfBoundsException e) {
             e.printStackTrace();
         }
-        int [] array=(int[]) myList.get(0);
+        int[] array = (int[]) myList.get(0);
         //
         System.out.println(array[0]);
     }
@@ -112,10 +114,10 @@ public class Base {
 
     }
 
-    private static void queueTest(){
+    private static void queueTest() {
         List<String> elementList = Lists.newArrayList("1", "2", "3");
         Queue<String> elementQueue = Queues.newArrayDeque(elementList);
-        if (!elementQueue.isEmpty()){
+        if (!elementQueue.isEmpty()) {
             String poll = elementQueue.poll();
             System.out.println(poll);
             elementQueue.offer(poll);
@@ -124,6 +126,18 @@ public class Base {
 
     }
 
+    private static void setContainTest(){
+        Set<String> aSet = Sets.newHashSet("a","b","c");
+        Set<String> bSet = Sets.newHashSet("a");
+        System.out.println(aSet.contains(bSet));
+        System.out.println(bSet.contains(aSet));
+        System.out.println(aSet.containsAll(bSet));
+        System.out.println(bSet.containsAll(aSet));
+        Set<String> cSet = Sets.newHashSet("a","e");
+        System.out.println(aSet.containsAll(cSet));
+        System.out.println(cSet.containsAll(aSet));
+
+    }
 
 
 }
