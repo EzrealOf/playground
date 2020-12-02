@@ -1,4 +1,4 @@
-package ezreal.leetcode;
+package com.ezreal.leetcode;
 
 
 import java.util.Objects;
