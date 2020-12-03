@@ -38,14 +38,15 @@ import java.util.Arrays;
 public class Medium34 {
 
     public static void main(String[] args) {
-//        int[]nums = new int[]{5,7,7,8,8,10};
-        int[]nums = new int[]{};
+        int[] nums = new int[]{5, 7, 7, 8, 8, 10};
+//        int[] nums = new int[]{};
         int target = 8;
         System.out.println(Arrays.toString(searchRange(nums, target)));
     }
 
     /**
      * 暴力循环（Brute force）
+     *
      * @param nums
      * @param target
      * @return
@@ -69,6 +70,7 @@ public class Medium34 {
 
     /**
      * 二分查找（Binary search）
+     *
      * @param nums
      * @param target
      * @return
@@ -77,9 +79,34 @@ public class Medium34 {
         //give
         int first = -1;
         int last = -1;
+        if (nums.length == 0) {
+            return new int[]{first, last};
+        }
         //when 二分查找
-
+        int leftIndex = binarySearch(nums, target, true);
+        int rightIndex = binarySearch(nums, target, false) - 1;
+        if (leftIndex <= rightIndex && rightIndex < nums.length && nums[leftIndex] == target && nums[rightIndex] == target) {
+            return new int[]{leftIndex, rightIndex};
+        }
         //then
         return new int[]{first, last};
     }
+
+    private static int binarySearch(int[] nums, int target, boolean lower) {
+        int ans = nums.length;
+        int left = 0;
+        int right = nums.length - 1;
+        while (left <= right) {
+            int mid = (right + left) / 2;
+            if (nums[mid] > target || (lower && nums[mid] >= target)) {
+                right = mid - 1;
+                ans = mid;
+            } else {
+                left = mid + 1;
+
+            }
+        }
+        return ans;
+    }
+
 }
