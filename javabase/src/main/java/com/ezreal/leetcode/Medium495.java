@@ -43,14 +43,14 @@ public class Medium495 {
         System.out.println(findPoisonedDuration(timeSeries, duration));
     }
 
-    public static int findPoisonedDuration(int[] timeSeries, int duration) {
+    public static int findPoisonedDurationBruteForce(int[] timeSeries, int duration) {
         if (timeSeries.length == 0) {
             return 0;
         }
         int[] counts = new int[timeSeries[timeSeries.length - 1] + duration];
         int sum = 0;
-        for (int i = 0; i < timeSeries.length; i++) {
-            for (int j = timeSeries[i]; j < timeSeries[i] + duration; j++) {
+        for (int timeSery : timeSeries) {
+            for (int j = timeSery; j < timeSery + duration; j++) {
                 counts[j] = 1;
             }
         }
@@ -60,5 +60,23 @@ public class Medium495 {
             }
         }
         return sum;
+    }
+
+    /**
+     * 攻击时间
+     *
+     * @param timeSeries 数组
+     * @param duration   持续时间
+     * @return 返回时间
+     */
+    public static int findPoisonedDuration(int[] timeSeries, int duration) {
+        int sum = 0;
+        if (timeSeries.length == 0) {
+            return sum;
+        }
+        for (int i = 0; i < timeSeries.length - 1; i++) {
+            sum += Math.min(timeSeries[i + 1] - timeSeries[i], duration);
+        }
+        return sum + duration;
     }
 }
