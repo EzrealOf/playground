@@ -34,7 +34,7 @@ import java.util.*;
  */
 public class Simple414 {
     public static void main(String[] args) {
-        int[] nums = {1,2,3,2};
+        int[] nums = {1, 2, 3, 2};
         System.out.println(thirdMax(nums));
     }
 
@@ -60,14 +60,14 @@ public class Simple414 {
         boolean init = true;
         Arrays.sort(nums);
         for (int i = 0; i < nums.length; i++) {
-            if (init){
+            if (init) {
                 //初始化状态。
                 count++;
                 big = bigger;
                 bigger = biggest;
                 biggest = nums[i];
                 init = false;
-            }else{
+            } else {
                 //后续如果有更大 就替换
                 if (nums[i] > biggest) {
                     count++;
