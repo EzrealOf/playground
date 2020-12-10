@@ -34,11 +34,11 @@ import java.util.*;
  */
 public class Simple414 {
     public static void main(String[] args) {
-        int[] nums = {1, 2, 3};
+        int[] nums = {1,2,3,2};
         System.out.println(thirdMax(nums));
     }
 
-    public static int thirdMax(int[] nums) {
+    public static int thirdMaxSet(int[] nums) {
         Set<Integer> hashSet = new HashSet<>();
         for (int i = 0; i < nums.length; i++) {
             hashSet.add(nums[i]);
@@ -50,5 +50,34 @@ public class Simple414 {
         } else {
             return arrayList.get(arrayList.size() - 3);
         }
+    }
+
+    public static int thirdMax(int[] nums) {
+        int biggest = Integer.MIN_VALUE;
+        int bigger = Integer.MIN_VALUE;
+        int big = Integer.MIN_VALUE;
+        int count = 0;
+        boolean init = true;
+        Arrays.sort(nums);
+        for (int i = 0; i < nums.length; i++) {
+            if (init){
+                //初始化状态。
+                count++;
+                big = bigger;
+                bigger = biggest;
+                biggest = nums[i];
+                init = false;
+            }else{
+                //后续如果有更大 就替换
+                if (nums[i] > biggest) {
+                    count++;
+                    big = bigger;
+                    bigger = biggest;
+                    biggest = nums[i];
+                }
+            }
+
+        }
+        return count > 2 ? big : biggest;
     }
 }
