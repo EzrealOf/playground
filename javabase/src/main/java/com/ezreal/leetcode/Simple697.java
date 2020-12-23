@@ -1,5 +1,9 @@
 package com.ezreal.leetcode;
 
+import java.util.HashMap;
+import java.util.Map;
+import java.util.concurrent.atomic.AtomicInteger;
+
 /**
  * 697. 数组的度
  * 给定一个非空且只包含非负数的整数数组 nums, 数组的度的定义是指数组里任一元素出现频数的最大值。
@@ -32,7 +36,38 @@ package com.ezreal.leetcode;
  * @author ezeal
  */
 public class Simple697 {
-    public int findShortestSubArray(int[] nums) {
 
+    public static void main(String[] args) {
+        int[] nums = {1, 2, 2, 3, 1};
+        System.out.println(findShortestSubArray(nums));
+    }
+
+    public static int findShortestSubArray(int[] nums) {
+        if (nums.length <= 1) {
+            return nums.length;
+        }
+        Map<Integer, Integer> map = new HashMap<>();
+        for (int i = 0; i < nums.length; i++) {
+            map.putIfAbsent(nums[i], map.getOrDefault(nums[i], 0) + 1);
+        }
+        AtomicInteger maxCount = new AtomicInteger(-1);
+        AtomicInteger maxNumber = new AtomicInteger(-1);
+        map.forEach((key, value) -> {
+            if (value > maxCount.get()) {
+                maxCount.set(value);
+                maxNumber.set(key);
+            }
+        });
+        int pre = -1;
+        int lat = -1;
+        for (int i = 0; i < nums.length; i++) {
+            if (maxNumber.get() == nums[i] && pre == -1) {
+                pre = i;
+            }
+            if (maxNumber.get() == nums[i]) {
+                lat = i;
+            }
+        }
+        return lat - pre;
     }
 }
