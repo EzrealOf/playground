@@ -1,5 +1,6 @@
 package com.ezreal.leetcode;
 
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.concurrent.atomic.AtomicInteger;
@@ -46,28 +47,20 @@ public class Simple697 {
         if (nums.length <= 1) {
             return nums.length;
         }
-        Map<Integer, Integer> map = new HashMap<>();
+        Map<Integer, Integer> count = new HashMap<>(), right = new HashMap<>(), left = new HashMap<>();
         for (int i = 0; i < nums.length; i++) {
-            map.putIfAbsent(nums[i], map.getOrDefault(nums[i], 0) + 1);
+            int x = nums[i];
+            left.putIfAbsent(x, i);
+            right.put(x,i);
+            count.put(x, count.getOrDefault(x, 0) +1);
         }
-        AtomicInteger maxCount = new AtomicInteger(-1);
-        AtomicInteger maxNumber = new AtomicInteger(-1);
-        map.forEach((key, value) -> {
-            if (value > maxCount.get()) {
-                maxCount.set(value);
-                maxNumber.set(key);
-            }
-        });
-        int pre = -1;
-        int lat = -1;
-        for (int i = 0; i < nums.length; i++) {
-            if (maxNumber.get() == nums[i] && pre == -1) {
-                pre = i;
-            }
-            if (maxNumber.get() == nums[i]) {
-                lat = i;
+        int ans = nums.length;
+        int degree = Collections.max(count.values());
+        for (int x: count.keySet()){
+            if (count.get(x) == degree){
+                ans = Math.min(ans, right.get(x) - left.get(x) + 1);
             }
         }
-        return lat - pre;
+        return ans;
     }
 }
