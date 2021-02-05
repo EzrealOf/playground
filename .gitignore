@@ -1,5 +1,4 @@
 # Created by .ignore support plugin (hsz.mobi)
-.gitignore
 .mvn/
 mvnw
 mvnw.cmd
@@ -8,4 +7,9 @@ src/test/
 *.idea
 target/
 
+### IntelliJ IDEA ###
+*.log
+.idea
+*.iws
 *.iml
+*.ipr
