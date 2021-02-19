@@ -1,8 +1,6 @@
 package soldier;
 
 
-import com.google.common.collect.Lists;
-
 import java.util.Objects;
 import java.util.Scanner;
 

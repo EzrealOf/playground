@@ -5,7 +5,7 @@
 
 	<groupId>com.ezreal</groupId>
 	<artifactId>playgrounp</artifactId>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0-SNAPSHOT</version>
     <modules>
         <module>earlysleep</module>
         <module>caffeine</module>
