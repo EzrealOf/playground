@@ -12,12 +12,30 @@ public class Simple203 {
 
     public static void main(String[] args) {
         int[] nums = {1, 2, 6, 3, 4, 5, 6};
-        ListNode linkList = createLinkList(nums);
-        System.out.println(linkList);
+        ListNode head = createLinkList(nums);
+        System.out.println(head);
+        ListNode listNode = removeElements(head, 1);
+        System.out.println(listNode);
     }
 
     public static ListNode removeElements(ListNode head, int val) {
-        return null;
+        ListNode dummyNode = new ListNode();
+        dummyNode.next = head;
+        remove(dummyNode, dummyNode.next, val);
+        return dummyNode.next;
+    }
+
+    public static void remove(ListNode head, ListNode current, int val) {
+        if (current == null) {
+            return;
+        }
+        if (current.val == val) {
+            head.next = null;
+            remove(head, current.next, val);
+        } else {
+            head.next = current;
+            remove(head.next, current.next, val);
+        }
     }
 
     public static ListNode createLinkList(int[] nums) {
@@ -26,16 +44,13 @@ public class Simple203 {
         }
         ListNode head = new ListNode(nums[0]);
         ListNode current = head;
-        for (int i = 0, numsLength = nums.length; i < numsLength - 1; i++) {
-            current = pickListNode(current.next, nums[i]);
+        for (int i = 1, numsLength = nums.length; i < numsLength; i++) {
+            current = pickListNode(current, nums[i]);
         }
         return head;
     }
 
     private static ListNode pickListNode(ListNode currentNode, int num) {
-        if (currentNode == null) {
-            currentNode = new ListNode(num);
-        }
         ListNode node = new ListNode(num);
         currentNode.next = node;
         return node;
