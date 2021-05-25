@@ -114,6 +114,18 @@ public class Simple203 {
     }
 
 
+    private static void printLinkList(ListNode node) {
+        System.out.print("-------当前node:【");
+        ListNode cur = node;
+        while (cur != null) {
+            System.out.print(cur.val + ", ");
+            cur = cur.next;
+        }
+        System.out.print(" 】-------");
+        System.out.println();
+    }
+
+
 
 }
 
