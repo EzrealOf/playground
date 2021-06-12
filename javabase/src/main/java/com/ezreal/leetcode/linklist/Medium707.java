@@ -1,6 +1,5 @@
 package com.ezreal.leetcode.linklist;
 
-import static com.ezreal.leetcode.linklist.Simple203.createLinkList;
 
 /**
  * Created on 2021/5/18.

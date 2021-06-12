@@ -30,4 +30,36 @@ public class ListNode {
                 ", next=" + next +
                 '}';
     }
+
+
+
+    protected static void printLinkList(ListNode node) {
+        System.out.print("-------当前node:【");
+        ListNode cur = node;
+        while (cur != null) {
+            System.out.print(cur.val + ", ");
+            cur = cur.next;
+        }
+        System.out.print(" 】-------");
+        System.out.println();
+    }
+
+
+    public static ListNode createLinkList(int[] nums) {
+        if (nums == null || nums.length == 0) {
+            return null;
+        }
+        ListNode head = new ListNode(nums[0]);
+        ListNode current = head;
+        for (int i = 1, numsLength = nums.length; i < numsLength; i++) {
+            current = pickListNode(current, nums[i]);
+        }
+        return head;
+    }
+
+    private static ListNode pickListNode(ListNode currentNode, int num) {
+        ListNode node = new ListNode(num);
+        currentNode.next = node;
+        return node;
+    }
 }
