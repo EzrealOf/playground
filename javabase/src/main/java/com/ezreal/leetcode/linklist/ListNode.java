@@ -32,15 +32,14 @@ public class ListNode {
     }
 
 
-
     protected static void printLinkList(ListNode node) {
-        System.out.print("-------当前node:【");
+        System.out.print("当前node:【");
         ListNode cur = node;
         while (cur != null) {
-            System.out.print(cur.val + ", ");
+            System.out.print("\t" + cur.val + "\t");
             cur = cur.next;
         }
-        System.out.print(" 】-------");
+        System.out.print(" 】");
         System.out.println();
     }
 
