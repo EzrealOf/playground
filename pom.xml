@@ -11,6 +11,7 @@
         <module>caffeine</module>
         <module>jpatest</module>
         <module>javabase</module>
+        <module>spring-strategy-pattern</module>
     </modules>
     <packaging>pom</packaging>
 
