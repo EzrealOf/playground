@@ -49,20 +49,6 @@ public class LoginHandlerFactory implements InitializingBean, ApplicationContext
         context = applicationContext;
     }
 
-    public static void main(String[] args) {
-        ConcurrentHashMap<String, Long> map= new ConcurrentHashMap<>();
-        map.computeIfAbsent("aa", new Function<String, Long>() {
-            @Override
-            public Long apply(String s) {
-                return map.computeIfAbsent("bb", new Function<String, Long>() {
-                    @Override
-                    public Long apply(String s) {
-                        return 2L;
-                    }
-                });
-            }
-        });
-    }
 
 
 }
