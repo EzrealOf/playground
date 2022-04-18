@@ -12,6 +12,8 @@
         <module>jpatest</module>
         <module>javabase</module>
         <module>spring-strategy-pattern</module>
+        <module>curator-demo</module>
+        <module>dubbo-demo</module>
     </modules>
     <packaging>pom</packaging>
 
