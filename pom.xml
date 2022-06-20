@@ -14,6 +14,7 @@
         <module>spring-strategy-pattern</module>
         <module>curator-demo</module>
         <module>dubbo-demo</module>
+        <module>spring-el-demo</module>
     </modules>
     <packaging>pom</packaging>
 
