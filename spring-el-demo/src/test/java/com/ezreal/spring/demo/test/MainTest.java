@@ -1,10 +1,14 @@
 package com.ezreal.spring.demo.test;
 
+import com.ezreal.spring.demo.test.entity.Inventor;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.SpelEvaluationException;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
+
+import java.util.GregorianCalendar;
 
 public class MainTest {
 
@@ -55,7 +59,43 @@ public class MainTest {
 
     }
 
+    /**
+     * Note the use of the generic method: public <T> T getValue(Class<T> desiredResultType).
+     * Using this method removes the need to cast the value of the expression to the desired result type.
+     * An EvaluationException is thrown if the value cannot be cast to the type T or converted by using the registered type converter.
+     */
+    @Test
+    void getValue() {
+        GregorianCalendar c = new GregorianCalendar();
+        c.set(1856, 7, 9);
 
+        // The constructor arguments are name, birthday, and nationality.
+        Inventor tesla = new Inventor("Nikola Tesla", c.getTime(), "Serbian");
 
+        ExpressionParser parser = new SpelExpressionParser();
+        Expression exp = parser.parseExpression("name");
+        String name = (String) exp.getValue(tesla);
+        // name == "Nikola Tesla"
+
+        exp = parser.parseExpression("name == 'Nikola Tesla'");
+        boolean result = exp.getValue(tesla, Boolean.class);
+        // result == true
+    }
+
+    @Test
+    void getWrongValue() {
+        GregorianCalendar c = new GregorianCalendar();
+        c.set(1856, 7, 9);
+
+        // The constructor arguments are name, birthday, and nationality.
+        Inventor tesla = new Inventor("Nikola Tesla", c.getTime(), "Serbian");
+
+        ExpressionParser parser = new SpelExpressionParser();
+        Expression exp = parser.parseExpression("name1");
+        Assertions.assertThrows(SpelEvaluationException.class, () -> {
+            exp.getValue(tesla);
+        });
+
+    }
 
 }
