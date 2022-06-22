@@ -3,7 +3,9 @@ package com.ezreal.spring.demo.test;
 import org.junit.jupiter.api.Assertions;
 import org.junit.jupiter.api.Test;
 import org.springframework.expression.EvaluationContext;
+import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.SpelParserConfiguration;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.SimpleEvaluationContext;
 
@@ -27,7 +29,24 @@ public class TypeTest {
         Assertions.assertEquals(false, b);
 
     }
+    @Test
+    void getValue(){
+
+        SpelParserConfiguration config = new SpelParserConfiguration(true,true);
+        SpelExpressionParser parser = new SpelExpressionParser(config);
+        Expression expression = parser.parseExpression("list[3]");
+        Demo demo = new Demo();
+        Object value = expression.getValue(demo);
+
+        demo.list.add(1, "kitty");
+        Assertions.assertEquals("", value);
+    }
+
     class Simple {
         public List<Boolean> booleanList = new ArrayList<Boolean>();
     }
+    class Demo {
+        public List<String> list;
+    }
+
 }
