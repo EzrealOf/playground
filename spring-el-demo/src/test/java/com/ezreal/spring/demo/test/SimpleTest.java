@@ -10,7 +10,7 @@ import org.springframework.expression.spel.standard.SpelExpressionParser;
 
 import java.util.GregorianCalendar;
 
-public class MainTest {
+public class SimpleTest {
 
     @Test
     public void helloWorld() {
