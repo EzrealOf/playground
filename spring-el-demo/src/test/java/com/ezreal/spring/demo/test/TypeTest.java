@@ -5,6 +5,7 @@ import org.junit.jupiter.api.Test;
 import org.springframework.expression.EvaluationContext;
 import org.springframework.expression.Expression;
 import org.springframework.expression.ExpressionParser;
+import org.springframework.expression.spel.SpelCompilerMode;
 import org.springframework.expression.spel.SpelParserConfiguration;
 import org.springframework.expression.spel.standard.SpelExpressionParser;
 import org.springframework.expression.spel.support.SimpleEvaluationContext;
@@ -40,13 +41,26 @@ public class TypeTest {
 
         demo.list.add(1, "kitty");
         Assertions.assertEquals("", value);
+        // demo.list will now be a real collection of 4 entries
+        // Each entry is a new empty String
     }
 
+    @Test
+    void spelConfig(){
+        SpelParserConfiguration config = new SpelParserConfiguration(SpelCompilerMode.IMMEDIATE, this.getClass().getClassLoader());
+        SpelExpressionParser parser = new SpelExpressionParser(config);
+
+        Expression expr = parser.parseExpression("payload");
+
+
+    }
     class Simple {
         public List<Boolean> booleanList = new ArrayList<Boolean>();
     }
     class Demo {
         public List<String> list;
     }
+
+
 
 }
