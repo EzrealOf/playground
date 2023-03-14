@@ -1,9 +1,9 @@
 package com.ezreal.bill;
 
-import com.alibaba.fastjson.JSON;
 import com.google.common.collect.Lists;
 
 import java.util.List;
+import java.util.Objects;
 
 /**
  * 树结构定义
@@ -31,10 +31,18 @@ class TreeNode {
 
     @Override
     public String toString() {
-        return "TreeNode{" +
-                "name='" + name + '\'' +
-                ", children=" + children +
-                ", parent=" + parent +
-                '}';
+        if (Objects.isNull(parent)) {
+            return "TreeNode{" +
+                    "name='" + name + '\'' +
+                    ", children=" + children +
+                    ", parent=" + null +
+                    '}';
+        }else {
+            return "TreeNode{" +
+                    "name='" + name + '\'' +
+                    ", children=" + children +
+                    ", parent=" + parent.name +
+                    '}';
+        }
     }
 }

@@ -10,10 +10,9 @@ import java.util.Objects;
 public class BillTreeTest {
 
     public static void main(String[] args) {
-        TreeNode init = init1();
-        System.out.println(init);
-//        TreeNode a1 = fuzzyMatch("", init);
-//        System.out.println(a1);
+        TreeNode init = init4();
+        TreeNode a1 = fuzzyMatch("A", init);
+        System.out.println(a1);
 
     }
 
