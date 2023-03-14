@@ -11,7 +11,7 @@ public class BillTreeTest {
 
     public static void main(String[] args) {
         TreeNode init = init4();
-        TreeNode a1 = fuzzyMatch("A", init);
+        TreeNode a1 = fuzzyMatch("G", init);
         System.out.println(a1);
 
     }
@@ -57,12 +57,16 @@ public class BillTreeTest {
     }
 
     public static TreeNode fuzzyMatch(String query, TreeNode root) {
-        if (StringUtils.isEmpty(query)){
+        if (StringUtils.isEmpty(query)) {
             return root;
         }
         ArrayDeque<TreeNode> arrayDeque = new ArrayDeque<TreeNode>();
         TreeNode result = new TreeNode();
         recursion(query, root, arrayDeque);
+        if (arrayDeque.isEmpty()) {
+            result.name = root.name;
+            return result;
+        }
         construction(result, arrayDeque);
         return result;
     }
