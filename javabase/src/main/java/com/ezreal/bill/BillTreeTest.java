@@ -10,8 +10,8 @@ import java.util.Objects;
 public class BillTreeTest {
 
     public static void main(String[] args) {
-        TreeNode init = init4();
-        TreeNode a1 = fuzzyMatch("G", init);
+        TreeNode init = init3();
+        TreeNode a1 = fuzzyMatch("A", init);
         System.out.println(a1);
 
     }
@@ -91,6 +91,7 @@ public class BillTreeTest {
             TreeNode node = new TreeNode();
             if (current.parent.name == result.name) {
                 node.name = current.name;
+                node.parent = current.parent;
                 result.children.add(node);
                 arrayList.remove(current);
                 continue;
