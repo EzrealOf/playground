@@ -16,6 +16,7 @@
         <module>dubbo-demo</module>
         <module>spring-el-demo</module>
         <module>sentinel-demo</module>
+        <module>spring-boot-aop-demo</module>
     </modules>
     <packaging>pom</packaging>
 
