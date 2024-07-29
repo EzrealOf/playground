@@ -1,33 +1,46 @@
 package com.ezreal.base;
 
+import com.google.common.collect.HashBasedTable;
+import com.google.common.collect.Table;
+
+import java.math.BigDecimal;
+import java.util.Map;
+
 public class Test {
 
     public static void main(String[] args) {
-        // 冒泡排序
-        int [] arr = {9, 8, 7, 6, 5, 4, 3, 2, 1};
-        bubbleSort(arr);
-        //快速排序
-        quickSort(arr);
+        Table<String, String, Integer> table = HashBasedTable.create();
 
-    }
+        // 添加数据
+        table.put("row1", "col1", 1);
+        table.put("row1", "col2", 2);
 
-    public static void bubbleSort(int[] arr) {
-        // 冒泡排序
-        for (int i = 0; i < arr.length - 1; i++) {
-            for (int j = 0; j < arr.length - 1 - i; j++) {
-                if (arr[j] > arr[j + 1]) {
-                    int temp = arr[j];
-                    arr[j] = arr[j + 1];
-                    arr[j + 1] = temp;
-                }
+        // 获取数据
+        Integer value = table.get("row1", "col1");
+        System.out.println(value); // 输出 1
+
+        for (Map<String, Integer> row : table.rowMap().values()) {
+            for (Map.Entry<String, Integer> entry : row.entrySet()) {
+                System.out.println(entry.getKey() + ": " + entry.getValue());
             }
         }
+
+        for (Map<String, Integer> column : table.columnMap().values()) {
+            for (Map.Entry<String, Integer> entry : column.entrySet()) {
+                System.out.println(entry.getKey() + ": " + entry.getValue());
+            }
+        }
+
+        // 遍历所有单元格
+        for (Table.Cell<String, String, Integer> cell : table.cellSet()) {
+            System.out.println(cell.getRowKey() + ", " + cell.getColumnKey() + ": " + cell.getValue());
+        }
+
+
+
     }
 
-    public static void quickSort(int[] arr) {
-        // 快速排序
 
-    }
 
 
 }
